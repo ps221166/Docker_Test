@@ -48,7 +48,7 @@ jobs:
       steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker-compose build --no-cache --force-rm -t Docker_Test:tag
+        run: docker-compose build --no-cache --force-rm -t Docker_Test:latest
 
   test-image:
 
