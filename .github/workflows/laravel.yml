@@ -42,6 +42,7 @@ jobs:
 
   image-build:
 
+      needs: laravel-tests
       runs-on: ubuntu-latest
 
       steps:
@@ -50,7 +51,8 @@ jobs:
         run: docker-compose build --no-cache --force-rm
 
   test-image:
-    
+
+      needs: image-build
       runs-on: ubuntu-latest
 
       steps:
@@ -60,6 +62,7 @@ jobs:
 
   push-to-registry:
 
+      needs: test-image
       name: Push Docker image to Docker hub
 
       runs-on: ubuntu-latest
