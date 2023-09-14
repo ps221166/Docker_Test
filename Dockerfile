@@ -36,10 +36,10 @@ RUN docker-php-ext-configure opcache --enable-opcache && \
     docker-php-ext-install pdo pdo_mysql
 
 
-COPY --from=build /app /var/www/html
+COPY --from=image-build /app /var/www/html
 EXPOSE 8000
 CMD php artisan serve --host=0.0.0.0 --port=8000
 
-COPY --from=build /app /var/www/html
+COPY --from=image-build /app /var/www/html
 EXPOSE 8000
 CMD php artisan serve --host=0.0.0.0 --port=8000
