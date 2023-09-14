@@ -48,7 +48,7 @@ jobs:
       steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: docker-compose build --no-cache --force-rm -t Docker_Test:latest
+        run: docker-compose build --no-cache --force-rm
 
   test-image:
 
@@ -87,5 +87,3 @@ jobs:
           context: "{{defaultContext}}"
           push: true
           repository: Docker_Test
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
