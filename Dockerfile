@@ -1,4 +1,4 @@
-FROM composer:2.4 as build
+FROM composer:2.4 as image-build
 COPY . /app/
 FROM php:8.1-cli
 
@@ -17,7 +17,7 @@ WORKDIR /app
 COPY . /app
 
 COPY . /var/www/html/
-COPY --from=build /usr/bin/composer /usr/bin/composer
+COPY --from=image-build /usr/bin/composer /usr/bin/composer
 RUN composer install --prefer-dist --no-interaction
 RUN composer install
 
@@ -36,10 +36,10 @@ RUN docker-php-ext-configure opcache --enable-opcache && \
     docker-php-ext-install pdo pdo_mysql
 
 
-COPY --from=build /app /var/www/html
+COPY --from=image-build /app /var/www/html
 EXPOSE 8000
 CMD php artisan serve --host=0.0.0.0 --port=8000
 
-COPY --from=build /app /var/www/html
+COPY --from=image-build /app /var/www/html
 EXPOSE 8000
 CMD php artisan serve --host=0.0.0.0 --port=8000
