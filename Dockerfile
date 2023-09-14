@@ -39,7 +39,3 @@ RUN docker-php-ext-configure opcache --enable-opcache && \
 COPY --from=image-build /app /var/www/html
 EXPOSE 8000
 CMD php artisan serve --host=0.0.0.0 --port=8000
-
-COPY --from=image-build /app /var/www/html
-EXPOSE 8000
-CMD php artisan serve --host=0.0.0.0 --port=8000
