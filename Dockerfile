@@ -18,7 +18,6 @@ COPY . /app
 
 COPY . /var/www/html/
 COPY --from=image-build /usr/bin/composer /usr/bin/composer
-RUN composer install --prefer-dist --no-interaction
 RUN composer install
 
 RUN php artisan config:cache && \
