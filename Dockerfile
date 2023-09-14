@@ -9,7 +9,6 @@ ENV APP_ENV=dev
 ENV APP_DEBUG=true
 ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN docker-php-ext-install pdo mbstring
 
 RUN apt-get update && apt-get install -y zip
 RUN docker-php-ext-install pdo pdo_mysql
@@ -18,7 +17,6 @@ COPY . /app
 
 COPY . /var/www/html/
 COPY --from=image-build /usr/bin/composer /usr/bin/composer
-RUN composer install --prefer-dist --no-interaction
 RUN composer install
 
 RUN php artisan config:cache && \
