@@ -5,7 +5,7 @@ services:
       context: ./
     volumes:
       - .:/var/www/html
-      - .env.dev:/var/www/html/.env
+      - .env:/var/www/html/.env
     ports:
       - "8080:80"
     environment:
