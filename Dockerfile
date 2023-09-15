@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y zip
 RUN docker-php-ext-install pdo pdo_mysql
 WORKDIR /app
 COPY . /app
+COPY .env
 
 COPY . /var/www/html/
 COPY --from=image-build /usr/bin/composer /usr/bin/composer
