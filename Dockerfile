@@ -18,6 +18,8 @@ COPY . /var/www/html/
 COPY --from=image-build /usr/bin/composer /usr/bin/composer
 RUN composer install
 
+RUN php artisan key:generate
+
 RUN php artisan config:cache && \
     php artisan route:cache && \
     chmod 777 -R /var/www/html/storage/ && \
